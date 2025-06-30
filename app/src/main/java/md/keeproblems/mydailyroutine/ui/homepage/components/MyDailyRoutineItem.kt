@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -48,6 +49,7 @@ internal fun MyDailyRoutineItem(
             fontWeight = FontWeight.ExtraBold
         )
     }
+    LinearProgressIndicator(progress = { progress }, modifier.fillMaxWidth())
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)

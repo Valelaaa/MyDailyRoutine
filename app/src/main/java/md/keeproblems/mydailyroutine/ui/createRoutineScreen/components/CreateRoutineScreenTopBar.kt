@@ -1,17 +1,21 @@
 package md.keeproblems.mydailyroutine.ui.createRoutineScreen.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 
 @Composable
@@ -33,18 +37,18 @@ internal fun CreateRoutineScreenTopBar(
             }
         },
         actions = {
-            IconButton(
-                onClick = onCreateButtonClick
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "",
-                )
+            Row(modifier = Modifier.padding(end = 24.dp)) {
+                OutlinedButton(
+                    onClick = onCreateButtonClick,
+                    shape = MaterialTheme.shapes.small,
+                ) {
+                    RoutineText(text = "Create", color = MaterialTheme.colorScheme.primary)
+                }
             }
         },
         colors = TopAppBarDefaults.topAppBarColors().copy(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
-        )
+        ),
     )
 }
 

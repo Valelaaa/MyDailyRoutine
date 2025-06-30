@@ -1,11 +1,11 @@
 package md.keeproblems.mydailyroutine.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import md.keeproblems.mydailyroutine.ui.navigation.NavChannel
-import md.keeproblems.mydailyroutine.ui.navigation.NavChannelImpl
 import javax.inject.Singleton
 
 @Module
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 object UtilsModule {
     @Provides
     @Singleton
-    fun provideNavigationChannel(): NavChannel = NavChannelImpl()
+    fun provideGsonSerializer(): Gson = GsonBuilder().create()
 }

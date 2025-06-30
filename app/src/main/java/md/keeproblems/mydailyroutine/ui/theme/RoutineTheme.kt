@@ -3,6 +3,7 @@ package md.keeproblems.mydailyroutine.ui.theme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.google.gson.annotations.SerializedName
 
 data class RoutineTheme(
     val primaryColor: Color,
@@ -22,14 +23,16 @@ data class RoutineTheme(
     }
 }
 
+
 enum class RoutineThemes {
+    @SerializedName("DEFAULT")
     DEFAULT,
 }
 
 @Composable
-fun getRoutineThemeByType(routineThemes: RoutineThemes): RoutineTheme {
+fun getRoutineThemeByType(routineThemes: RoutineThemes?): RoutineTheme {
     return when (routineThemes) {
-        RoutineThemes.DEFAULT -> RoutineTheme.defaultRoutineTheme
+        else -> RoutineTheme.defaultRoutineTheme
     }
 }
 

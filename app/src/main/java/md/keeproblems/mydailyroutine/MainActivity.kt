@@ -4,9 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,18 +12,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers.IO
+import jakarta.inject.Inject
 import kotlinx.coroutines.launch
+import md.keeproblems.mydailyroutine.ui.bottomsheets.BottomSheetChannel
+import md.keeproblems.mydailyroutine.ui.bottomsheets.BottomSheetHost
 import md.keeproblems.mydailyroutine.ui.navigation.MyDailyRoutineNavHost
 import md.keeproblems.mydailyroutine.ui.navigation.MyRoutineRoutes
 import md.keeproblems.mydailyroutine.ui.navigation.NavChannel
 import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
     lateinit var navigationChannel: NavChannel
+    @Inject
+    lateinit var bottomSheetChannel: BottomSheetChannel
+
     private lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ class MainActivity : ComponentActivity() {
                 navController = rememberNavController()
                 MyDailyRoutineNavHost(navController)
             }
+            BottomSheetHost(bottomSheetChannel.flow)
         }
     }
 
@@ -56,7 +58,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 
 }
 

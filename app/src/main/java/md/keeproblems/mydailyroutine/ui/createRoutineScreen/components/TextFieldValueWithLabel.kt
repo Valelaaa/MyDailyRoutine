@@ -1,7 +1,13 @@
 package md.keeproblems.mydailyroutine.ui.createRoutineScreen.components
 
-import androidx.compose.material3.TextField
+import android.content.res.Configuration
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
@@ -10,23 +16,47 @@ import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 internal fun TextFieldValueWithLabel(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    label: String
+    label: String,
+    placeHolderText: String,
+    modifier: Modifier = Modifier,
+    isError: Boolean = false,
+    imeAction: ImeAction = ImeAction.None,
+    errorMessage: String = "",
 ) {
-    TextField(
-        value = value,
+    OutlinedTextField(
         onValueChange = onValueChange,
+        value = value,
         label = {
             RoutineText(label)
-        }
+        },
+        modifier = modifier,
+        placeholder = {
+            RoutineText(placeHolderText)
+        },
+        isError = isError,
+        maxLines = 1,
+        singleLine = true,
+        supportingText = if (isError) {
+            {
+                RoutineText(errorMessage)
+            }
+        } else null,
+        keyboardActions = KeyboardActions.Default,
+        keyboardOptions = KeyboardOptions(
+            imeAction = imeAction
+        )
     )
 }
 
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 internal fun TextFieldValueWithLabelPreview() {
     TextFieldValueWithLabel(
-        value = TextFieldValue("data value"),
+        value = TextFieldValue("label"),
         onValueChange = {},
         label = "Data",
+        placeHolderText = "placeholder",
+        isError = true
     )
 }
