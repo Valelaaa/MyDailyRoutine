@@ -15,16 +15,12 @@ class RoutineStore @Inject constructor(
     private val key = DataStoreKey.RoutineStoreKey
 
     override suspend fun getAllRoutines(): List<Routine> {
-        println("!!! + log getAllRoutines: start reading from dataStore")
         val rawValue = dataStore.get(key, String::class.java)
-        println("!!! + log getAllRoutines: rawValue = $rawValue")
         if (rawValue.isNullOrEmpty()) {
-            println("!!! + log getAllRoutines: rawValue is null or empty, return emptyList")
             return emptyList()
         }
         val type = object : TypeToken<List<Routine>>() {}.type
         val list: List<Routine> = gson.fromJson(rawValue, type)
-        println("!!! + log getAllRoutines: parsed list size = ${list.size}")
         return list
     }
 
@@ -34,13 +30,9 @@ class RoutineStore @Inject constructor(
     }
 
     override suspend fun putRoutine(routine: Routine) {
-        println("!!! + log putRoutine: start saving routine with id = ${routine.id}")
         val newList = getAllRoutines() + routine
-        println("!!! + log putRoutine: new list size = ${newList.size}")
         val rawList = gson.toJson(newList)
-        println("!!! + log putRoutine: json to save = $rawList")
         dataStore.put(key, rawList)
-        println("!!! + log putRoutine: saved successfully")
     }
 
     override suspend fun deleteRoutine() = dataStore.delete(key)
