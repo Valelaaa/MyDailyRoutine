@@ -11,23 +11,53 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
+import md.keeproblems.mydailyroutine.ui.navigation.MyDailyRoutineNavHost
+import md.keeproblems.mydailyroutine.ui.navigation.MyRoutineRoutes
+import md.keeproblems.mydailyroutine.ui.navigation.NavChannel
 import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var navigationChannel: NavChannel
+    private lateinit var navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        observeNavigation()
         setContent {
-            MyDailyRoutineTheme(darkTheme = true) {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            MyDailyRoutineTheme {
+                navController = rememberNavController()
+                MyDailyRoutineNavHost(navController)
+            }
+        }
+    }
+
+    private fun observeNavigation() {
+        lifecycleScope.launch {
+            navigationChannel.navChannel.collect {
+                when (it) {
+                    MyRoutineRoutes.NavigateBack -> {
+                        navController.popBackStack()
+                    }
+
+                    else -> {
+                        navController.navigate(it.route)
+                    }
                 }
             }
         }
     }
+
+
 }
 
 @Composable
