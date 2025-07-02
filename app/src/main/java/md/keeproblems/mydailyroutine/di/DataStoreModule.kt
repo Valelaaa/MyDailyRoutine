@@ -6,8 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import md.keeproblems.mydailyroutine.data.store.DataStore
 import md.keeproblems.mydailyroutine.data.store.IRoutineStore
-import md.keeproblems.mydailyroutine.data.store.impl.LiveSessionDataStore
 import md.keeproblems.mydailyroutine.data.store.impl.RoutineStore
+import md.keeproblems.mydailyroutine.data.store.impl.SharedPreferencesDataStore
 import javax.inject.Singleton
 
 @Module
@@ -15,9 +15,10 @@ import javax.inject.Singleton
 abstract class DataStoreModule {
     @Binds
     @Singleton
-    abstract fun provideDataStore(impl: LiveSessionDataStore): DataStore
+    abstract fun provideDataStore(impl: SharedPreferencesDataStore): DataStore
 
     @Binds
     @Singleton
     abstract fun provideRoutineDataStore(impl: RoutineStore): IRoutineStore
+
 }

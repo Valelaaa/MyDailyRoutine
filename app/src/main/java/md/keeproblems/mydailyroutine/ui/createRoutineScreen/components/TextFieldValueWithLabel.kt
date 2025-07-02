@@ -3,13 +3,13 @@ package md.keeproblems.mydailyroutine.ui.createRoutineScreen.components
 import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
+import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 
 @Composable
@@ -52,11 +52,13 @@ internal fun TextFieldValueWithLabel(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 internal fun TextFieldValueWithLabelPreview() {
-    TextFieldValueWithLabel(
-        value = TextFieldValue("label"),
-        onValueChange = {},
-        label = "Data",
-        placeHolderText = "placeholder",
-        isError = true
-    )
+    MyDailyRoutineTheme {
+        TextFieldValueWithLabel(
+            value = TextFieldValue("label"),
+            onValueChange = {},
+            label = "Data",
+            placeHolderText = "placeholder",
+            isError = true
+        )
+    }
 }

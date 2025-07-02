@@ -14,8 +14,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import md.keeproblems.mydailyroutine.R
+import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 
 @Composable
@@ -42,7 +45,7 @@ internal fun CreateRoutineScreenTopBar(
                     onClick = onCreateButtonClick,
                     shape = MaterialTheme.shapes.small,
                 ) {
-                    RoutineText(text = "Create", color = MaterialTheme.colorScheme.primary)
+                    RoutineText(text = stringResource(R.string.create_label), color = MaterialTheme.colorScheme.primary)
                 }
             }
         },
@@ -56,8 +59,10 @@ internal fun CreateRoutineScreenTopBar(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CreateRoutineScreenTopBarPreview() {
-    CreateRoutineScreenTopBar(
-        onBackClick = {},
-        onCreateButtonClick = {}
-    )
+    MyDailyRoutineTheme {
+        CreateRoutineScreenTopBar(
+            onBackClick = {},
+            onCreateButtonClick = {}
+        )
+    }
 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 
 @Composable
@@ -55,7 +56,10 @@ fun SelectableCard(
                     if (isValueStateValid) {
                         RoutineText(text = value ?: "")
                     } else {
-                        RoutineText(text = placeHolder, color = MaterialTheme.colorScheme.secondary)
+                        RoutineText(
+                            text = placeHolder,
+                            color = MaterialTheme.colorScheme.secondary
+                        )
                     }
                 }
             }
@@ -68,10 +72,12 @@ fun SelectableCard(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun SelectableCardPreview() {
-    SelectableCard(
-        value = "value",
-        onClick = {},
-        modifier = Modifier.fillMaxWidth(),
-        label = "label"
-    )
+    MyDailyRoutineTheme {
+        SelectableCard(
+            value = "value",
+            onClick = {},
+            modifier = Modifier.fillMaxWidth(),
+            label = "label"
+        )
+    }
 }

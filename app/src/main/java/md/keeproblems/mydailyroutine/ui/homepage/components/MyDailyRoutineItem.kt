@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.RoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 import md.keeproblems.mydailyroutine.ui.theme.defaultRoutineTheme
@@ -49,14 +50,16 @@ internal fun MyDailyRoutineItem(
             fontWeight = FontWeight.ExtraBold
         )
     }
-    LinearProgressIndicator(progress = { progress }, modifier.fillMaxWidth())
+    LinearProgressIndicator(progress = { progress }, modifier.fillMaxWidth(),
+        trackColor = selectedRoutineTheme.primaryBackgroundColor,
+        color = selectedRoutineTheme.primaryColor)
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun MyDailyRoutineItemPreview() {
-    MaterialTheme {
+    MyDailyRoutineTheme {
         MyDailyRoutineItem(title = "Routine")
     }
 }

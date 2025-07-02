@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 navController = rememberNavController()
                 MyDailyRoutineNavHost(navController)
             }
-            BottomSheetHost(bottomSheetChannel.flow)
+            BottomSheetHost(bottomSheetChannel)
         }
     }
 

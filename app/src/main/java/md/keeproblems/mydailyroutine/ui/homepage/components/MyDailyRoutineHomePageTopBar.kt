@@ -10,9 +10,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.tooling.preview.Preview
+import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +41,7 @@ internal fun MyDailyRoutineHomePageTopBar(onActionClick: () -> Unit = {}) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun MyDailyRoutineHomePageTopBarPreview() {
-    MaterialTheme {
+    MyDailyRoutineTheme {
         MyDailyRoutineHomePageTopBar(onActionClick = {})
     }
 }

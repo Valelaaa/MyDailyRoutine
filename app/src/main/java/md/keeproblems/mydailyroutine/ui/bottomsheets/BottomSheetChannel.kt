@@ -6,4 +6,6 @@ interface BottomSheetChannel {
     val flow: Flow<BottomSheetType>
 
     fun show(type: BottomSheetType)
+
+    fun hide()
 }

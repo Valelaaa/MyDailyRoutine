@@ -15,14 +15,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import md.keeproblems.mydailyroutine.R
 import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.CreateRoutineScreenTopBar
+import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.PeriodSection
 import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.SelectableCard
 import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.TextFieldValueWithLabel
+import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.RoutineThemes
 import md.keeproblems.mydailyroutine.ui.theme.getRoutineThemeByType
 
@@ -51,7 +55,10 @@ internal fun CreateRoutineScreen(
                 updateNote = viewModel::updateNote,
                 openThemeSelectorBottomSheet = viewModel::openThemeSelectorBottomSheet,
                 selectedTheme = state.selectedTheme,
-                isTitleError = state.isTitleError
+                isTitleError = state.isTitleError,
+                periodInput = state.periodInput,
+                onPeriodUpdate = viewModel::onPeriodUpdate,
+                onPeriodSelectorClick = viewModel::onPeriodSelectorClick
             )
         }
     }
@@ -65,6 +72,9 @@ internal fun CreateRoutineScreenContent(
     updateNote: (TextFieldValue) -> Unit,
     selectedTheme: RoutineThemes?,
     openThemeSelectorBottomSheet: () -> Unit,
+    periodInput: TextFieldValue,
+    onPeriodUpdate: (TextFieldValue) -> Unit,
+    onPeriodSelectorClick: () -> Unit,
     isTitleError: Boolean = false,
 ) {
     Column(
@@ -78,7 +88,7 @@ internal fun CreateRoutineScreenContent(
             modifier = Modifier.fillMaxWidth(),
             isError = isTitleError,
             imeAction = ImeAction.Next,
-            errorMessage = "This is Required Field"
+            errorMessage = stringResource(R.string.required_field_error_message)
         )
         TextFieldValueWithLabel(
             value = noteTextField,
@@ -89,18 +99,25 @@ internal fun CreateRoutineScreenContent(
             imeAction = ImeAction.Done,
         )
 
+        PeriodSection(
+            periodInput = periodInput,
+            onPeriodUpdate = onPeriodUpdate,
+            onPeriodSelectorClick = onPeriodSelectorClick
+        )
+
         SelectableCard(
-            value = selectedTheme?.name,
+            value = selectedTheme?.displayName,
             onClick = openThemeSelectorBottomSheet,
-            placeHolder = "Select routine theme",
-            label = "Routine Theme:",
-            modifier = Modifier
-                .fillMaxWidth(),
+            placeHolder = stringResource(R.string.routine_theme_label),
+            label = "Theme:",
+            modifier = Modifier,
             trailingIcon = {
                 Column(
                     Modifier
                         .background(
-                            color = getRoutineThemeByType(selectedTheme).primaryColor,
+                            color = getRoutineThemeByType(
+                                selectedTheme ?: RoutineThemes.DEFAULT
+                            ).primaryBackgroundColor,
                             shape = MaterialTheme.shapes.small,
                         )
                         .border(
@@ -120,12 +137,18 @@ internal fun CreateRoutineScreenContent(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 internal fun CreateRoutineScreenContentPreview() {
-    CreateRoutineScreenContent(
-        titleTextField = TextFieldValue(),
-        noteTextField = TextFieldValue(),
-        updateTitle = {},
-        updateNote = {},
-        selectedTheme = null,
-        openThemeSelectorBottomSheet = {}
-    )
+    MyDailyRoutineTheme {
+        CreateRoutineScreenContent(
+            titleTextField = TextFieldValue(),
+            noteTextField = TextFieldValue(),
+            updateTitle = {},
+            updateNote = {},
+            selectedTheme = RoutineThemes.LIGHT_RED_YELLOW,
+            openThemeSelectorBottomSheet = {},
+            periodInput = TextFieldValue(),
+            onPeriodUpdate = {},
+            onPeriodSelectorClick = {},
+            isTitleError = true,
+            )
+    }
 }

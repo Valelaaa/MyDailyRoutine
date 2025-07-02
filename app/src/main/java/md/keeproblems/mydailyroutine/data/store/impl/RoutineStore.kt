@@ -1,16 +1,15 @@
 package md.keeproblems.mydailyroutine.data.store.impl
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import jakarta.inject.Inject
 import md.keeproblems.mydailyroutine.data.store.DataStore
 import md.keeproblems.mydailyroutine.data.store.DataStoreKey
 import md.keeproblems.mydailyroutine.data.store.IRoutineStore
+import md.keeproblems.mydailyroutine.data.store.serializer.JsonSerializer
 import md.keeproblems.mydailyroutine.domain.model.Routine
+import javax.inject.Inject
 
 class RoutineStore @Inject constructor(
     private val dataStore: DataStore,
-    private val gson: Gson
+    private val jsonSerializer: JsonSerializer
 ) : IRoutineStore {
     private val key = DataStoreKey.RoutineStoreKey
 
@@ -19,8 +18,7 @@ class RoutineStore @Inject constructor(
         if (rawValue.isNullOrEmpty()) {
             return emptyList()
         }
-        val type = object : TypeToken<List<Routine>>() {}.type
-        val list: List<Routine> = gson.fromJson(rawValue, type)
+        val list = jsonSerializer.deserialize<List<Routine>>(rawValue) ?: emptyList()
         return list
     }
 
@@ -31,7 +29,7 @@ class RoutineStore @Inject constructor(
 
     override suspend fun putRoutine(routine: Routine) {
         val newList = getAllRoutines() + routine
-        val rawList = gson.toJson(newList)
+        val rawList = jsonSerializer.serialize(newList)
         dataStore.put(key, rawList)
     }
 
