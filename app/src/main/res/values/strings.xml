@@ -6,4 +6,5 @@
     <string name="routine_theme_label">Routine theme</string>
     <string name="notes_label">notes</string>
     <string name="add_note_label">Give it notes</string>
+    <string name="select_theme_title_lable">Select Theme</string>
 </resources>

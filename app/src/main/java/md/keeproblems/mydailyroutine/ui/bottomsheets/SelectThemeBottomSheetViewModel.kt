@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class SelectThemeBottomSHeetViewModel @Inject constructor(
+class SelectThemeBottomSheetViewModel @Inject constructor(
     private val themeSelector: ThemeSelectorChannel
 ) : ViewModel() {
 

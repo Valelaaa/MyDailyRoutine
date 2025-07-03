@@ -19,12 +19,18 @@ import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import md.keeproblems.mydailyroutine.ui.bottomsheets.SelectThemeBottomSHeetViewModel
+import md.keeproblems.mydailyroutine.R
+import md.keeproblems.mydailyroutine.ui.bottomsheets.SelectThemeBottomSheetViewModel
 import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
+import md.keeproblems.mydailyroutine.ui.theme.RoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.RoutineThemes
+import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 import md.keeproblems.mydailyroutine.ui.theme.getRoutineThemeByType
 
 @Composable
@@ -32,7 +38,7 @@ import md.keeproblems.mydailyroutine.ui.theme.getRoutineThemeByType
 fun SelectThemeBottomSheet(
     sheetState: SheetState,
     onDismiss: () -> Unit,
-    createRoutineViewModel: SelectThemeBottomSHeetViewModel = hiltViewModel()
+    createRoutineViewModel: SelectThemeBottomSheetViewModel = hiltViewModel()
 ) {
     SelectThemeBottomSheet(
         sheetState = sheetState,
@@ -65,11 +71,20 @@ fun SelectThemeBottomSheetContent(
     themes: List<RoutineThemes>,
     onSelectThemeClick: (RoutineThemes) -> Unit
 ) {
+
     Column(
         modifier = Modifier
             .padding(horizontal = 24.dp)
             .padding(bottom = 40.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        RoutineText(
+            stringResource(R.string.select_theme_title_lable),
+            color = MaterialTheme.colorScheme.onBackground,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp
+        )
+
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -95,17 +110,16 @@ private fun SelectThemeItem(
     Column(
         modifier = modifier
             .border(
-                width = 1.dp, color = MaterialTheme.colorScheme.outline, shape = shape
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outline,
+                shape = shape
             )
             .background(
-                color = getRoutineThemeByType(theme).primaryBackgroundColor, shape = shape
+                color = getRoutineThemeByType(theme).primaryBackgroundColor,
+                shape = shape
             )
             .clip(shape)
-            .clickable(enabled = true) {
-                onThemeSelect(theme)
-            }) {
-
-    }
+            .clickable(enabled = true) { onThemeSelect(theme) }) {}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
