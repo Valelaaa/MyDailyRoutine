@@ -38,8 +38,9 @@ class MainActivity : ComponentActivity() {
             MyDailyRoutineTheme {
                 navController = rememberNavController()
                 MyDailyRoutineNavHost(navController)
+
+                BottomSheetHost(bottomSheetChannel)
             }
-            BottomSheetHost(bottomSheetChannel)
         }
     }
 

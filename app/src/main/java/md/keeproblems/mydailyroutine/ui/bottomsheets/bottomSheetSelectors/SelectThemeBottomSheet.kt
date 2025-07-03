@@ -71,7 +71,6 @@ fun SelectThemeBottomSheetContent(
     themes: List<RoutineThemes>,
     onSelectThemeClick: (RoutineThemes) -> Unit
 ) {
-
     Column(
         modifier = Modifier
             .padding(horizontal = 24.dp)
