@@ -4,10 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -25,6 +21,7 @@ import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 class MainActivity : ComponentActivity() {
     @Inject
     lateinit var navigationChannel: NavChannel
+
     @Inject
     lateinit var bottomSheetChannel: BottomSheetChannel
 
@@ -60,20 +57,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyDailyRoutineTheme {
-        Greeting("Android")
-    }
 }

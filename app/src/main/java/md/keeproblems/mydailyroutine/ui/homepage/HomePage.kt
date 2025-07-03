@@ -39,6 +39,7 @@ fun MyDailyRoutineHomePage(
         routines = state.routines,
         onCreateNewRoutineClick = viewModel::onCreateRoutineClick,
         onPullToRefreshAction = viewModel::onPullToRefreshAction,
+        onRoutineClick = viewModel::onRoutineClick,
         isRefreshing = state.isRefreshing
     )
 }
@@ -50,6 +51,7 @@ fun MyDailyRoutineHomePage(
     onPullToRefreshAction: () -> Unit,
     routines: List<RoutineUiModel>,
     onCreateNewRoutineClick: () -> Unit,
+    onRoutineClick: (String) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -77,6 +79,7 @@ fun MyDailyRoutineHomePage(
                 ) {
                     MyDailyRoutineHomePageContent(
                         tasks = routines,
+                        onRoutineClick = onRoutineClick
                     )
                 }
             }
@@ -86,7 +89,9 @@ fun MyDailyRoutineHomePage(
 
 @Composable
 private fun MyDailyRoutineHomePageContent(
-    tasks: List<RoutineUiModel>, modifier: Modifier = Modifier
+    tasks: List<RoutineUiModel>,
+    onRoutineClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val isTasksEmpty = remember(tasks) {
         tasks.isEmpty()
@@ -103,9 +108,10 @@ private fun MyDailyRoutineHomePageContent(
         LazyColumn(modifier = modifier) {
             items(items = tasks) { task ->
                 MyDailyRoutineItem(
-                    title = task.title,
+                    routine = task,
                     selectedRoutineTheme = getRoutineThemeByType(task.theme),
-                    progress = task.currentProgress
+                    progress = task.currentProgress,
+                    onClick = onRoutineClick
                 )
             }
         }
@@ -120,6 +126,7 @@ private fun MyDailyRoutineHomePagePreview() {
     MyDailyRoutineTheme {
         MyDailyRoutineHomePage(
             routines = emptyList(),
+            onRoutineClick = {},
             onPullToRefreshAction = {},
             isRefreshing = true,
             onCreateNewRoutineClick = {}
@@ -132,6 +139,8 @@ private fun MyDailyRoutineHomePagePreview() {
 @Composable
 private fun MyDailyRoutineHomePageContentPreview() {
     MyDailyRoutineTheme {
-        MyDailyRoutineHomePageContent(emptyList())
+        MyDailyRoutineHomePageContent(
+            tasks = emptyList(),
+            onRoutineClick = {})
     }
 }

@@ -9,6 +9,18 @@ data class RoutineUiModel(
     val description: String = "",
     val currentDayIndex: Int,
     val totalDays: Int,
+    val selectedPeriod: String = ""
 ) {
     val currentProgress: Float = currentDayIndex / totalDays.toFloat()
+
+    companion object {
+        val EMPTY = RoutineUiModel(
+            id = "",
+            theme = RoutineThemes.DEFAULT,
+            title = "",
+            description = "",
+            currentDayIndex = 0,
+            totalDays = 1
+        )
+    }
 }

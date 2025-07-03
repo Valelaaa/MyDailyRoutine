@@ -22,6 +22,7 @@ import md.keeproblems.mydailyroutine.ui.navigation.MyRoutineRoutes
 import md.keeproblems.mydailyroutine.ui.navigation.NavChannel
 import md.keeproblems.mydailyroutine.ui.theme.RoutineThemes
 import md.keeproblems.mydailyroutine.utils.dateUtils.addDays
+import md.keeproblems.mydailyroutine.utils.dateUtils.consts.DEFAULT_REPLAY_EXPIRATION_MILLIS
 import java.util.Calendar
 import java.util.UUID
 
@@ -40,7 +41,7 @@ internal class CreateRoutineViewModel @Inject constructor(
 
     val state = _state.stateIn(
         viewModelScope,
-        SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS),
+        SharingStarted.WhileSubscribed(DEFAULT_REPLAY_EXPIRATION_MILLIS),
         CreateRoutineUiState.EMPTY
     )
     private var createRoutineJob: Job? = null
@@ -166,6 +167,5 @@ internal class CreateRoutineViewModel @Inject constructor(
 
     companion object {
         const val MAX_PERIOD_INPUT_NUMBER = 99_999
-        const val STOP_TIMEOUT_MILLIS = 5_000L
     }
 }

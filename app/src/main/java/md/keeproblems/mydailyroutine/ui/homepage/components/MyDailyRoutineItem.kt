@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import md.keeproblems.mydailyroutine.ui.homepage.state.RoutineUiModel
 import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.RoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
@@ -24,15 +25,16 @@ import md.keeproblems.mydailyroutine.ui.theme.defaultRoutineTheme
 
 @Composable
 internal fun MyDailyRoutineItem(
-    title: String,
+    routine: RoutineUiModel,
     modifier: Modifier = Modifier,
+    onClick: (String) -> Unit,
     selectedRoutineTheme: RoutineTheme = MaterialTheme.defaultRoutineTheme(),
     progress: Float = 0f,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable {}
+            .clickable { onClick(routine.id) }
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(horizontal = 16.dp, vertical = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(space = 12.dp),
@@ -46,13 +48,15 @@ internal fun MyDailyRoutineItem(
             progress = { progress }
         )
         RoutineText(
-            text = title,
+            text = routine.title,
             fontWeight = FontWeight.ExtraBold
         )
     }
-    LinearProgressIndicator(progress = { progress }, modifier.fillMaxWidth(),
+    LinearProgressIndicator(
+        progress = { progress }, modifier.fillMaxWidth(),
         trackColor = selectedRoutineTheme.primaryBackgroundColor,
-        color = selectedRoutineTheme.primaryColor)
+        color = selectedRoutineTheme.primaryColor
+    )
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
@@ -60,6 +64,9 @@ internal fun MyDailyRoutineItem(
 @Composable
 private fun MyDailyRoutineItemPreview() {
     MyDailyRoutineTheme {
-        MyDailyRoutineItem(title = "Routine")
+        MyDailyRoutineItem(
+            routine = RoutineUiModel.EMPTY,
+            onClick = {}
+        )
     }
 }

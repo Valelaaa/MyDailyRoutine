@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import md.keeproblems.mydailyroutine.data.store.serializer.JsonSerializer
+import md.keeproblems.mydailyroutine.domain.service.RoutineMapper
 import md.keeproblems.mydailyroutine.domain.service.ThemeSelectorChannel
 import javax.inject.Singleton
 
@@ -30,4 +31,8 @@ object UtilsModule {
     @Provides
     @Singleton
     fun provideThemeSelectorChannel(): ThemeSelectorChannel = ThemeSelectorChannel()
+
+    @Provides
+    @Singleton
+    fun provideRoutineMapper(): RoutineMapper = RoutineMapper()
 }
