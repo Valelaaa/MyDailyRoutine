@@ -94,7 +94,7 @@ internal fun CreateRoutineScreenContent(
             value = noteTextField,
             onValueChange = updateNote,
             label = stringResource(R.string.notes_label),
-            placeHolderText = "Give it description",
+            placeHolderText = stringResource(R.string.add_note_label),
             modifier = Modifier.fillMaxWidth(),
             imeAction = ImeAction.Done,
         )
