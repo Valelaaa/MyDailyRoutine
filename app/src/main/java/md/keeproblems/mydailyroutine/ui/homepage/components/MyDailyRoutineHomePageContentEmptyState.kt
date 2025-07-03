@@ -20,9 +20,9 @@ import md.keeproblems.mydailyroutine.R
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 
 @Composable
-fun MyDailyRoutineHomePageContentEmptyState() {
+fun MyDailyRoutineHomePageContentEmptyState(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

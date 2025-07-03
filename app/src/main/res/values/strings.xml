@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">MyDailyRoutine</string>
+    <string name="app_name" translatable="false">MyDailyRoutine</string>
     <string name="you_have_no_active_habits">You have no active habits</string>
+    <string name="create_label">Create</string>
+    <string name="required_field_error_message">This is Required Field</string>
+    <string name="routine_theme_label">Routine theme</string>
+    <string name="notes_label">notes</string>
+    <string name="add_note_label">Give it notes</string>
+    <string name="select_theme_title_lable">Select Theme</string>
 </resources>
