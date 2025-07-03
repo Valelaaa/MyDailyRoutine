@@ -1,4 +1,4 @@
-package md.keeproblems.mydailyroutine.ui.createRoutineScreen.components
+package md.keeproblems.mydailyroutine.ui.createroutinescreen.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions

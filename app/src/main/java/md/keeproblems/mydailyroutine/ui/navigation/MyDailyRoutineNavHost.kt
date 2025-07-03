@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import md.keeproblems.mydailyroutine.ui.createRoutineScreen.CreateRoutineScreen
+import md.keeproblems.mydailyroutine.ui.createroutinescreen.CreateRoutineScreen
 import md.keeproblems.mydailyroutine.ui.homepage.MyDailyRoutineHomePage
 
 @Composable

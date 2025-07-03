@@ -1,4 +1,4 @@
-package md.keeproblems.mydailyroutine.ui.createRoutineScreen
+package md.keeproblems.mydailyroutine.ui.createroutinescreen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -22,10 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import md.keeproblems.mydailyroutine.R
-import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.CreateRoutineScreenTopBar
-import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.PeriodSection
-import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.SelectableCard
-import md.keeproblems.mydailyroutine.ui.createRoutineScreen.components.TextFieldValueWithLabel
+import md.keeproblems.mydailyroutine.ui.createroutinescreen.components.CreateRoutineScreenTopBar
+import md.keeproblems.mydailyroutine.ui.createroutinescreen.components.PeriodSection
+import md.keeproblems.mydailyroutine.ui.createroutinescreen.components.SelectableCard
+import md.keeproblems.mydailyroutine.ui.createroutinescreen.components.TextFieldValueWithLabel
 import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.RoutineThemes
 import md.keeproblems.mydailyroutine.ui.theme.getRoutineThemeByType

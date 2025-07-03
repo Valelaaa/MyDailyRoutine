@@ -1,4 +1,4 @@
-package md.keeproblems.mydailyroutine.ui.createRoutineScreen
+package md.keeproblems.mydailyroutine.ui.createroutinescreen
 
 import androidx.compose.ui.text.input.TextFieldValue
 import md.keeproblems.mydailyroutine.ui.theme.RoutineThemes
