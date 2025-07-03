@@ -4,4 +4,5 @@
     <string name="create_label">Create</string>
     <string name="required_field_error_message">This is Required Field</string>
     <string name="routine_theme_label">Routine theme</string>
+    <string name="notes_label">notes</string>
 </resources>

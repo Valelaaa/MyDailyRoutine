@@ -93,7 +93,7 @@ internal fun CreateRoutineScreenContent(
         TextFieldValueWithLabel(
             value = noteTextField,
             onValueChange = updateNote,
-            label = "description",
+            label = stringResource(R.string.notes_label),
             placeHolderText = "Give it description",
             modifier = Modifier.fillMaxWidth(),
             imeAction = ImeAction.Done,
@@ -102,7 +102,8 @@ internal fun CreateRoutineScreenContent(
         PeriodSection(
             periodInput = periodInput,
             onPeriodUpdate = onPeriodUpdate,
-            onPeriodSelectorClick = onPeriodSelectorClick
+            onPeriodSelectorClick = onPeriodSelectorClick,
+            imeAction = ImeAction.Done
         )
 
         SelectableCard(

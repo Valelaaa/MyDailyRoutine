@@ -33,6 +33,7 @@ internal fun PeriodSection(
     periodInput: TextFieldValue,
     onPeriodUpdate: (TextFieldValue) -> Unit,
     onPeriodSelectorClick: () -> Unit,
+    imeAction: ImeAction = ImeAction.None,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -46,6 +47,7 @@ internal fun PeriodSection(
             value = periodInput,
             onValueChange = onPeriodUpdate,
             label = "Up to 99999",
+            imeAction = imeAction
         )
     }
 }
@@ -84,7 +86,7 @@ internal fun PeriodSelector(
             style = MaterialTheme.typography.bodyMedium,
             maxLines = 1,
         )
-        if(enabled) {
+        if (enabled) {
             Icon(
                 imageVector = Icons.Default.ArrowDropDown,
                 contentDescription = "select",
@@ -102,15 +104,15 @@ internal fun PeriodTextField(
     onValueChange: (TextFieldValue) -> Unit,
     label: String = "",
     placeHolder: String = "",
-) {
+    imeAction: ImeAction = ImeAction.None,
+
+    ) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        keyboardActions = KeyboardActions {
-
-        },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = ImeAction.Done,
+        keyboardActions = KeyboardActions.Default,
+        keyboardOptions = KeyboardOptions(
+            imeAction = imeAction,
             keyboardType = KeyboardType.Number,
         ),
         label = if (label.isNotBlank()) {
