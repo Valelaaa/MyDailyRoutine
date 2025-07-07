@@ -28,7 +28,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import md.keeproblems.mydailyroutine.R
 import md.keeproblems.mydailyroutine.ui.bottomsheets.SelectThemeBottomSheetViewModel
 import md.keeproblems.mydailyroutine.ui.theme.MyDailyRoutineTheme
-import md.keeproblems.mydailyroutine.ui.theme.RoutineTheme
 import md.keeproblems.mydailyroutine.ui.theme.RoutineThemes
 import md.keeproblems.mydailyroutine.ui.theme.components.RoutineText
 import md.keeproblems.mydailyroutine.ui.theme.getRoutineThemeByType
@@ -78,7 +77,7 @@ fun SelectThemeBottomSheetContent(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         RoutineText(
-            stringResource(R.string.select_theme_title_lable),
+            stringResource(R.string.select_theme_title_label),
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
